@@ -1,0 +1,132 @@
+select date,platform, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,platform, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,channel_grouping, platform,extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,channel_grouping,platform, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,vertical, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,vertical, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,vertical, seller_type,extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,vertical,seller_type, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,subcategory, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,subcategory,seller_type, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+
+select date,region, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <='2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select date,region,seller_type, extract(year from date) as year, extract(month from date) as month,
+       sum(leads) as sumOfLeads,COUNT(DISTINCT(ad_id)) as ad_id,
+from `mudah-analytics-222509.analytics_visitors_dm.leads` where date >= '2019-01-01' and date <= '2021-03-31'
+group by 1, 2, 3, 4
+order by 1, 2, 3
+
+select l.date, ua.platform, extract(year from l.date) as year, extract(month from l.date) as month,
+       COUNT(DISTINCT(l.full_visitor_id)) as counts, 
+from analytics_visitors_dm.leads l
+    left join GA_datamart.user_attributes ua on
+    l.full_visitor_id = ua.full_visitor_id and
+    l.date = ua.date and
+    l.visit_id = ua.visit_id and
+    l.platform = ua.platform 
+where (l.date >= '2019-01-01' and l.date <='2021-03-31')  
+group by 1,2,3,4 
+order by date desc
+
+select l.date, l.subcategory, extract(year from l.date) as year, extract(month from l.date) as month,
+       COUNT(DISTINCT(l.full_visitor_id)) as counts, 
+from analytics_visitors_dm.leads l
+    left join GA_datamart.user_attributes ua on
+    l.full_visitor_id = ua.full_visitor_id and
+    l.date = ua.date and
+    l.visit_id = ua.visit_id and
+    l.platform = ua.platform 
+where (l.date >= '2019-01-01' and l.date <='2021-03-31')  
+group by 1,2,3,4 
+order by date desc
+
+select l.date, l.vertical, extract(year from l.date) as year, extract(month from l.date) as month,
+       COUNT(DISTINCT(l.full_visitor_id)) as counts, 
+from analytics_visitors_dm.leads l
+    left join GA_datamart.user_attributes ua on
+    l.full_visitor_id = ua.full_visitor_id and
+    l.date = ua.date and
+    l.visit_id = ua.visit_id and
+    l.platform = ua.platform 
+where (l.date >= '2019-01-01' and l.date <='2021-03-31')  
+group by 1,2,3,4 
+order by date desc
+
+select l.date, l.reply_type, extract(year from l.date) as year, extract(month from l.date) as month,
+       COUNT(DISTINCT(l.full_visitor_id)) as counts, 
+from analytics_visitors_dm.leads l
+    left join GA_datamart.user_attributes ua on
+    l.full_visitor_id = ua.full_visitor_id and
+    l.date = ua.date and
+    l.visit_id = ua.visit_id and
+    l.platform = ua.platform 
+where (l.date >= '2019-01-01' and l.date <='2021-03-31')  
+group by 1,2,3,4 
+order by date desc
+
+select l.date, l.seller_type, extract(year from l.date) as year, extract(month from l.date) as month,
+       COUNT(DISTINCT(l.full_visitor_id)) as counts, 
+from analytics_visitors_dm.leads l
+    left join GA_datamart.user_attributes ua on
+    l.full_visitor_id = ua.full_visitor_id and
+    l.date = ua.date and
+    l.visit_id = ua.visit_id and
+    l.platform = ua.platform 
+where (l.date >= '2019-01-01' and l.date <='2021-03-31')  
+group by 1,2,3,4 
+order by date desc
